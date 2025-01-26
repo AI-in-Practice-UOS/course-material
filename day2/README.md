@@ -5,7 +5,7 @@ Make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/download/package-manager) (Version: 20)
 - [pnpm](https://pnpm.io/installation)
 
-### Start slides
+### Start the presentation
 
 - `pnpm i`
 - `pnpm dev`
