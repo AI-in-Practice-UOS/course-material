@@ -7,7 +7,7 @@ Today, we cover the serialization of machine learning models and how to make the
 ## Requirements
 
 - Clone this repository to your local machine
-- Set up a Python environment to work in
+- Set up a Python 3.12 environment to work in
 - Install required packages `pip install -r requirements.txt`
 - Install Docker Engine (or Desktop)
 
