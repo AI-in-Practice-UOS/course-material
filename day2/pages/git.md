@@ -2,10 +2,18 @@
 layout: cover
 ---
 
-# Git, GitHub and Clean Code
+# Git in Production
+
+_Rough_ agenda:
 
 1. Requirements
-2. ...
+2. Basics of git
+3. Branches
+4. Merging
+5. Rewriting History
+6. Remote(s)
+7. Code review
+8. Collaboration
 
 ---
 
@@ -22,7 +30,7 @@ layout: cover
 
 = free and open source distributed version control system (VCS)
 
-<iframe src="https://link.excalidraw.com/readonly/SoVpCh62BHtLVMfvBiR1?darkMode=true" height="400px" width="800px"></iframe>
+<img src="../assets/excalidraw/git-overview.svg" width="75%" style="margin: auto">
 
 <!--
 Instead of the traditional centralized control system where even checking out a file required admin priviledges, git allows any work to be locally and may diverge as much as you want.
@@ -83,7 +91,7 @@ These simple commands suffice 80% of the time
 
 You're cooked
 
-<div style="display: flex; gap: 100px">
+<div style="display: flex; gap: 50px">
 
 <div>
 
@@ -106,7 +114,11 @@ You may wonder what happens if you just `git commit` without specifying a `--mes
 Quit [vi](<https://en.wikipedia.org/wiki/Vi_(text_editor)>) using `:q!` or specify your favorite editor (e.g. VSCode) in your git config to never end up in this situation: `git config --global core.editor "code"`
 
 </div>
-<img src="../assets/vim-meme.jpg" width="250px" >
+
+<div>
+  <img src="https://i.redd.it/9h7ykil4t8591.jpg"  >
+  <small><a href="https://www.reddit.com/r/ProgrammerHumor/comments/vatjrp/how_to_exit_vim/">r/ProgrammerHumor</a></small>
+</div>
 
 </div>
 
@@ -176,7 +188,9 @@ Why?
 - Better code organization
 - Minimizes friction during collaboration
 
-<iframe src="https://link.excalidraw.com/readonly/yxgUkHldZiGKLM0kofbR?darkMode=true" height="300px" width="600px"></iframe>
+<br>
+
+<img src="../assets/excalidraw/git-branching.svg" width="65%" style="margin: auto">
 
 ---
 
@@ -595,9 +609,13 @@ layout: two-cols-header
 
 ::left::
 
+<div style="padding-right: 10%">
+
 1. [Create a new issue](https://github.com/louiskhub/tmp/issues/new?template=Blank+issue) where we specify some arbitrary requirements for a feature
 2. Create a pull request (PR) from your new branch to _main_
 3. Link the issue in the PR description
+
+</div>
 
 ::right::
 
@@ -626,13 +644,14 @@ Why it is important (with descending priority)
 
 How to do it properly
 
-1. Keep **the reasons** for code review in mind
-2. Read the PR description
-3. Read corresponding issue/ticket and check if basic requirements are met by the PR
-4. Manually test the feature (if there is no dedicated QA) for bugs
-5. Step through the commit history to understand the changes on a **high level**
-6. Check out the code locally and use your editor to deep dive into sections that deserve more attention
-7. Ask questions and write comments about **stuff that matters** (no [nits](https://graphite.dev/blog/what-are-nits))
+1. Get the author to [self-review](https://mtlynch.io/code-review-love/#1-review-your-own-code-first) the code before you even look at the PR
+2. Keep **the reasons** for code review in mind
+3. Read the PR description
+4. Read corresponding issue/ticket and check if basic requirements are met by the PR
+5. Manually test the feature (if there is no dedicated QA) for bugs
+6. Step through the commit history to understand the changes on a **high level**
+7. Check out the code locally and use your editor to deep dive into sections that deserve more attention
+8. Ask questions and write comments about **stuff that matters** (no [nits](https://graphite.dev/blog/what-are-nits))
 
 <!--
 Show example repo here and go through the individual steps
@@ -648,6 +667,8 @@ and what you can do to cope
 
 ::left::
 
+<div style="padding-right: 10%">
+
 Small PRs are much easier to review. Large PRs introduce a kind of _code review fatigue_.
 
 Try to keep PRs small and compact.
@@ -656,9 +677,12 @@ Often, this is impossible! In those cases, make sure the PRs changes are within 
 
 Additionally, having an [atomic commit history](https://en.wikipedia.org/wiki/Atomic_commit#Atomic_commit_convention) helps a lot with review.
 
+</div>
+
 ::right::
 
-<img src="../assets/github/review-meme.png" >
+<img src="https://i.redd.it/5lfhqd6zs9d81.jpg" >
+<small><a href="https://www.reddit.com/r/ProgrammerHumor/comments/sa6tls/lgtm/">r/ProgrammerHumor</a></small>
 
 <!--
 Show huge diff of [interview booking PR](https://github.com/4eign-talents/platform/pull/452) and talk about what makes a large PR good
@@ -682,11 +706,11 @@ Show [interview booking PR](https://github.com/4eign-talents/platform/pull/452) 
 
 ::left::
 
-<img src="../assets/github/chaos.png" >
+<img src="../assets/github/review/chaos.png" >
 
 ::right::
 
-<img src="../assets/github/atomic-commit-history.png">
+<img src="../assets/github/review/atomic-commit-history.png">
 
 ---
 
@@ -694,43 +718,180 @@ Show [interview booking PR](https://github.com/4eign-talents/platform/pull/452) 
 
 What could we improve about our PRs commits to make them easier to review?
 
-<img src="../assets/github/bad-commit-history.png">
+<img src="../assets/github/review/bad-commit-history.png">
 
 ---
+layout: two-cols-header
+---
 
-# Question
+# Answer
 
 What could we improve about our PRs commits to make them easier to review?
 
-<img src="../assets/github/non-atomic-commit.png">
+1. Use descriptive commit messages (maybe even with a standardized naming convention)
+2. Don't make changes in some commits that you undo in a later commit!
+
+E.g. in _commit 1_ we add a line in the `test.md` file that we remove in _commit 2_:
+
+::left::
+
+<img width="85%" style="margin: auto;" src="../assets/github/review/diff-commit-1.png">
+
+::right::
+
+<img width="80%" style="margin: auto;" src="../assets/github/review/diff-commit-2.png">
+
+---
+layout: two-cols-header
+---
+
+# A workflow for getting a nice commit history
+
+The reviewer expectation differs from reality during implementation
+
+::left::
+
+**Problem:**
+During implementation, it's hard to maintain a nice commit history (especially if there's a lot of _trial and error_)
+
+**Solution:**
+Random commits just to backup your work. No one, except you, needs to understand them. You can also push these to an unused branch of your _remote_.
+
+**Implementation finished?**<br>
+&rarr; Use `git reset --soft` with the `SHA` of the last decent commit that you want the reviewer to see (usually the last commit of the branch where you've based your new branch on).
+
+::right::
+
+<img src="../assets/excalidraw/implementation-journey.svg" width="70%" style="margin-left: auto">
+
+---
+layout: two-cols-header
+---
+
+# A workflow for getting a nice commit history
+
+Implementation is finished, now what?
+
+::left::
+
+1. Use `git reset --soft` with the `SHA` of the last decent commit that you want the reviewer to see (usually the last commit of the branch where you've based your new branch on).
+
+2. Group your changes into [atomic commits](https://en.wikipedia.org/wiki/Atomic_commit#Atomic_commit_convention).
+
+   - Think about the changes you've made and how to group them into different contexts
+   - Combine this with [self-review](https://mtlynch.io/code-review-love/#1-review-your-own-code-first) of your code and check for unnecessary complexity
+
+3. Use `git push --force-with-lease` to rewrite the history on **your** remote branch
+
+::right::
+
+<img src="../assets/excalidraw/implementation-journey.svg" width="70%" style="margin-left: auto">
 
 ---
 
-# Atomic commit history
+# A nice tool for (self)-review
 
-how to get one
+Or how to get a nice [diff](https://en.wikipedia.org/wiki/Diff)
 
-- commit whatever (kraut und rüben)
-- `git reset --soft` saves the day
-- **think** about the different contexts that you worked on during development
-- only commit files of the same context together
-- name commit properly (preferably according to convention)
-- `git push --force` **only to a branch that is worked on solely by you!**
+Viewing and commit all your changes via the CLI (`git diff`) can be hard. Your [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) likely has a diff view that makes it easier to compare large amounts of changes. Below is an example from [VSCode](https://code.visualstudio.com/).
+
+<img src="../assets/vscode/diff.png" width="80%" style="margin: auto">
 
 ---
 
-# Update your PR upon upstream changes
+# Resolving conflicts
 
 `main` changed, now what?
 
-- pull changes from main
-- rather not `git merge main` but `git rebase main`
-- this creates no merge commit and keeps the idea of an atomic commit history
+Previously, [merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) were briefly mentioned. This happens a lot if you work with multiple devs on one project and it's _essential_ to know how to resolve them.
+
+<img src="../assets/excalidraw/conflict.svg">
+
+The new commits on _main_ included some changes that conflicted with the work you did on your branch.
 
 ---
 
-# Rebase
+# Resolving conflicts
 
-so what is this dark magic?
+Tips and tricks
 
-Rewriting history is dangerous and should only be done on **your own branches**
+Some remotes like GitHub enable you to resolve conflicts directly in the browser.
+
+<img src="../assets/github/conflict.png">
+
+Avoid this! You generally have much less control over what you are doing and it's easier to make mistakes.
+
+Instead, do it locally. First, we have to fetch all new changes from the remote with `git fetch origin`.
+
+---
+
+# Resolving conflicts
+
+Tips and tricks
+
+After we fetched all changes, we can either use `git merge <branch>` or `git rebase <branch>`.<br>
+Here, `<branch>` is the name of the branch you want to integrate the changes from.
+
+What is the difference between merging and rebasing?
+
+<img src="../assets/excalidraw/merge-vs-rebase.svg" width="80%">
+
+---
+
+# Rebasing can resolve your PR's conflicts
+
+This creates a _linear_ history and may force you to rewrite some commits
+
+When should you prefer `rebase` over `merge`?
+
+Rebasing _rewrites history_ (if you have a merge conflict that needs to be resolved). As mentioned previously, this should never be done on branches that are used by other devs!<br>
+This is also the reason why rebasing is considered "dangerous" and [avoided by some devs](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/).
+
+However, on **your own** feature branch, that is about to be merged as a PR, rebasing can be a really nice option because there won't be a merge commit and our nice atomic commit history is preserved!
+
+For large, complex PR's with multiple conflicts, a merge commit can get messy and will be hard to understand in the future. Rebasing forces you to adapt the individual commits that are affected by the conflicts.
+
+This might mean more work for you but could save your mates and future-self a lot of time!
+
+---
+
+# A nice tool for resolving conflicts
+
+is again (drum roll): Your [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)!
+
+Your IDE likely has some built in tooling to visualize and resolve conflicts much more easily than in the CLI. Below is an example from [VSCode](https://code.visualstudio.com/).
+
+<img src="../assets/vscode/conflict.png" width="60%" style="margin: auto">
+
+---
+
+# Going full circle
+
+Why Jupyter Notebooks suck for production
+
+They yield gruesome `diff`'s. Good luck trying to resolve conflicts!
+
+<img src="https://nbdime.readthedocs.io/en/latest/_images/diff-bad-shortened.png" width="70%">
+
+To be fair: There are tools (e.g. [nbdime](https://nbdime.readthedocs.io/en/latest/)) that make _diffing_ easier for Jupyter Notebooks. However, these tools also come with there caveats.
+
+---
+layout: two-cols-header
+---
+
+# There is a looooot more to learn about git
+
+But that's enough for today
+
+::left::
+
+As with most larger tools, one will hardly ever understand every little detail of git.
+
+That's no problem at all.
+
+Just never stop learning and exploring! This is what makes the best developers.
+
+::right::
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Down_the_Rabbit_Hole_%28311526846%29.jpg" >
+<small><a href="https://de.wikipedia.org/wiki/Rabbit_Hole#/media/Datei:Down_the_Rabbit_Hole_(311526846).jpg">wikipedia</a></small>
