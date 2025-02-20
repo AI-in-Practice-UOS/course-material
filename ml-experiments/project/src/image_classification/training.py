@@ -1,3 +1,4 @@
+import mlflow
 import logging
 import numpy as np
 import torch
@@ -31,9 +32,11 @@ def train(
     for i in range(epochs):
         loss_mean = train_one_epoch(train_loader, model, loss_fn, optimizer, device)
         logger.info(f"Epoch {i + 1}, average training loss: {loss_mean:.2f}")
+        mlflow.log_metric("training_loss", loss_mean, step=i)
         if (i + 1) % 5 == 0:
             accuracy = compute_accuracy(validation_loader, model, device)
             logger.info(f"Epoch {i}, validation accuracy: {accuracy:.2f}")
+            mlflow.log_metric("validation_accuracy", accuracy, step=i)
 
 
 def train_one_epoch(
@@ -53,7 +56,7 @@ def train_one_epoch(
         optimizer.step()
         optimizer.zero_grad()
         losses.append(loss.item())
-    return np.mean(losses)
+    return np.mean(losses).item()
 
 
 @torch.no_grad()
