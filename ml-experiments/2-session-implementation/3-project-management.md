@@ -24,6 +24,17 @@ git checkout HASH  # undo with: git switch -
 ```
 **Beware**: If you delete the branch and the commit is not merged to the main branch it may be garbage collected by git.
 
+## Structure, Conventions, Tests
+
+Equally important are a clear and well-defined structure of the code, shared conventions when working in teams and tests for crucial parts of the code.
+You learned about that in our other sessions.
+
+Basis: In most cases you'll want to structure your project as a Python package. (As in the sample project).
+
+<!-- 
+Maybe: Recommendations for ML experiment specific structure.
+ -->
+
 ## Pin dependencies
 To reproduce experiments and avoid bugs
 - the versions of packages your library depends on should be pinned and
@@ -34,16 +45,4 @@ Many tools are available for some or all of the tasks (pip, conda, poetry, pipen
 
 We chose `uv` as modern and efficient solution to all of the tasks.
 
-> *Hands-on showcase*
-
-
-
-## Structure, Conventions, Tests
-
-Equally important are a clear and well-defined structure of the code, shared conventions when working in teams and tests for crucial parts of the code.
-You learned about that in our other sessions.
-
-
-<!-- 
-Maybe: Recommendations for ML experiment specific structure.
- -->
+<!-- See ./uv.sh -->
