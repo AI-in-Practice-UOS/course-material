@@ -169,3 +169,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# JS
+node_modules
+
+## Mac
+.DS_Store
