@@ -1,0 +1,14 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    },
+    "python.analysis.languageServerMode": "full",
+    "python.analysis.extraPaths": [
+        // TODO: add path to python packages
+    ]
+}
