@@ -28,7 +28,7 @@ class TrainingConfig:
 
 
 def train():
-    device = "cuda"
+    device = "cpu"
     mlflow.set_tracking_uri("http://localhost:5000")
 
     logging.basicConfig(level="INFO")
