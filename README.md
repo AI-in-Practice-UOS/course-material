@@ -23,6 +23,5 @@ If you have questions or run into any issues:
 
 - Open an issue on this GitHub repository.
 - Contact the person responsible for the session for further support.
-- Contributing
 
 If you spot any errors or wish to contribute improvements, feel free to open a pull request. We appreciate your feedback and collaboration!
