@@ -111,7 +111,7 @@ It saves you time
 
 At first glance, it may seem like writing tests takes too much time.
 
-Short term, this may be the case. But in the long run, manual testing and making your your code does not break with new features takes much more time! <br>
+Short term, this may be the case. But in the long run, manual testing and making sure your code does not break with new features takes much more time! <br>
 Of course, this only matters if you plan to maintain the code for an extended period of time. In the fast paced software and ML world, _extended period of time_ can mean as little as a couple of months!
 
 ---
