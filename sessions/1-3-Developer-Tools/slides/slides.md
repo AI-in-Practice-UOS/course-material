@@ -141,6 +141,7 @@ When writing code, make use of code completion and the refactoring capabilities 
 - Move to new file
 - Rename symbol
 - Find and replace
+- and more...
 
 Let's look at how to use these things with some "real" code
 
