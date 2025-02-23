@@ -136,6 +136,12 @@ Use keyboard shortcuts to quickly navigate the workspace
 # Writing code
 When writing code, make use of code completion and the refactoring capabilities of the LSP
 
+- Auto imports
+- Go to definition
+- Move to new file
+- Rename symbol
+- Find and replace
+
 Let's look at how to use these things with some "real" code
 
 ---
