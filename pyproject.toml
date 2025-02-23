@@ -1,0 +1,16 @@
+[project]
+name = "course-material"
+version = "0.1.0"
+description = "The course material for the AI in Practice course at University Osnabrueck"
+readme = "README.md"
+requires-python = ">=3.12"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.6",
+]
+
+[tool.uv.workspace]
+members = [
+    # TODO: Add workspace members
+]
