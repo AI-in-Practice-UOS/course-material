@@ -4,9 +4,7 @@ version = "0.1.0"
 description = "The course material for the AI in Practice course at University Osnabrueck"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "pytest>=8.3.4",
-]
+dependencies = []
 
 [dependency-groups]
 dev = [
