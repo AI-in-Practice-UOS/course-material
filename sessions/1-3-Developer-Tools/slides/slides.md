@@ -106,12 +106,16 @@ Use a settings.json file to configure the editor:
 ```
 
 ---
-layout: intro
----
 
-# Keyboard shortcuts
+# VS Code Overview
 
-[Full reference](https://code.visualstudio.com/docs/reference/default-keybindings)
+VS Code has many useful views/components to achieve different things
+
+- **Sidebar**: Switch between explorer, extension panels, source control etc.
+- **Explorer**: Open files in the currently opened workspace
+- **Source Control**: Commit code directly from VS Code
+- **Run and Debug**: Debug your code
+- **Terminal**: Run terminal commands inside VS Code
 
 
 ---
@@ -128,10 +132,18 @@ Use keyboard shortcuts to quickly navigate the workspace
 | `Ctrl/Cmd + J`   | Toggle Terminal     |
 
 ---
+
+# Writing code
+When writing code, make use of code completion and the refactoring capabilities of the LSP
+
+Let's look at how to use these things with some "real" code
+
+---
 layout: image-right
 image: https://programmerhumor.io/wp-content/uploads/2022/04/programmerhumor-io-debugging-memes-programming-memes-f9cbf4082867882.jpg
 backgroundSize: contain
 ---
+
 
 # Debugging
 
@@ -142,7 +154,7 @@ There are many different ways on how to debug your code, but we will focus on th
 
 ---
 
-# Code Debugging
+# Debugging Shortcuts
 
 Use these keyboard shortcuts to run and debug your code
 
@@ -155,3 +167,19 @@ Use these keyboard shortcuts to run and debug your code
 | `F10` | Step Over |
 | `F11` | Step Into |
 | `⇧ + F11` | Step Out |
+
+---
+
+# GitHub Copilot
+An AI powered code generation tool with different ways of adding AI generated code to your workspace
+
+- AI powered code completion
+- Inline prompting
+- Copilot Chat
+- Copilot Edits
+
+---
+layout: intro
+---
+
+# Questions?
