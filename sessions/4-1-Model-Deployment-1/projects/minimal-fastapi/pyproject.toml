@@ -1,0 +1,13 @@
+[project]
+name = "minimal-fastapi"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.8",
+]
+
+[dependency-groups]
+dev = [
+    "httpie>=3.2.4",
+]

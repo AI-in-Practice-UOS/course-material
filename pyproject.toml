@@ -13,4 +13,6 @@ dev = [
 [tool.uv.workspace]
 members = [
     # TODO: Add workspace members
+    "sessions/4-1-Model-Deployment-1/projects/model-serialization",
+    "sessions/4-1-Model-Deployment-1/projects/minimal-fastapi", 
 ]
