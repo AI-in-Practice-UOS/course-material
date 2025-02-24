@@ -1,5 +1,0 @@
-
-{
-    "query": "{ book(id: 1) { title author } }"
-}
-
