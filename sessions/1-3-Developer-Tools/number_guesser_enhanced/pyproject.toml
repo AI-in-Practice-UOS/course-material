@@ -2,7 +2,6 @@
 name = "number-guesser-enhanced"
 version = "0.1.0"
 description = "An enhanced version of the number guessing game"
-readme = "README.md"
 requires-python = ">=3.12"
 
 [project.scripts]
