@@ -11,7 +11,7 @@ If you have set up everything as indicated below you can follow along on your ow
 * [**uv**](https://docs.astral.sh/**uv**/) installed and working.
 
 ## Contents
-1. Documentation (Notin)
+1. Documentation (Notion)
 2. Project Management (uv)
 3. Experiment Configuration (dataclasses)
 4. Results / Metrics Tracking (MLflow)
