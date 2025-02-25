@@ -13,5 +13,6 @@ dev = [
 [tool.uv.workspace]
 members = [
     # TODO: Add workspace members
-    "sessions/3-3-Experiment-Execution/sample-project"
+    "sessions/3-2-Experiment-Execution/sample-project",
+    "sessions/3-2-Experiment-Execution/sample-project-final"
 ]

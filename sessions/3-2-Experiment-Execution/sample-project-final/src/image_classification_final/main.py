@@ -12,8 +12,8 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
-from image_classification import training
-from image_classification.conv_net import ConvModel
+from image_classification_final import training
+from image_classification_final.conv_net import ConvModel
 
 logger = logging.getLogger(__name__)
 

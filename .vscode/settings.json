@@ -9,7 +9,8 @@
     },
     "python.analysis.languageServerMode": "full",
     "python.analysis.extraPaths": [
-        "sessions/3-3-Experiment-Execution/sample-project"
+        "sessions/3-2-Experiment-Execution/sample-project",
+        "sessions/3-2-Experiment-Execution/sample-project-final"
         // TODO: add path to python packages
     ]
 }

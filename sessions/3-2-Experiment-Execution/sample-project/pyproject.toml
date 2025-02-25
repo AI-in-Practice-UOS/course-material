@@ -1,0 +1,18 @@
+[project]
+name = "image-classification"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.2.3",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]
+
+[project.scripts]
+train = "image_classification.main:train"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

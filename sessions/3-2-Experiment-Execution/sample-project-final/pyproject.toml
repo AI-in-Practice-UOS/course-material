@@ -1,5 +1,5 @@
 [project]
-name = "image-classification"
+name = "image-classification-final"
 version = "0.1.0"
 description = "Experiment with neural network based image classifiers."
 readme = "README.md"
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-train = "image_classification.main:train"
+train = "image_classification_final.main:train"
 
 [build-system]
 requires = ["hatchling"]
