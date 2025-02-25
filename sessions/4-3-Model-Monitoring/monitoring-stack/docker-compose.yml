@@ -5,7 +5,7 @@ services:
     container_name: inference-api
     restart: no
     ports:
-      - "8080:80"
+      - "8000:80"
 
   grafana:
     image: "grafana/grafana:11.5.1"
