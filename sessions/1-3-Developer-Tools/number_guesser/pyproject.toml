@@ -1,0 +1,17 @@
+[project]
+name = "number-guesser"
+version = "0.1.0"
+description = "A simple number guessing game"
+requires-python = ">=3.12"
+
+[project.scripts]
+main = "number_guesser.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.6",
+]
