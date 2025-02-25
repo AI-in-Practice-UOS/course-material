@@ -1,0 +1,43 @@
+
+prometheus.scrape "local_metrics" {
+  targets = [
+    { "__address__" = "inference-api:80" },
+  ]
+  scrape_interval = "15s"
+  forward_to = [prometheus.remote_write.local_storage.receiver]
+}
+
+prometheus.remote_write "local_storage" {
+  endpoint {
+    url = "http://prometheus:9090/api/v1/write"
+  }
+}
+
+
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "docker_logs" {
+  targets = []
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex = "/(.*)"
+    target_label = "service_name"
+    replacement = "$1"
+    action = "replace"
+  }
+}
+
+loki.source.docker "local_logs" {
+  host = "unix:///var/run/docker.sock"
+  targets = discovery.docker.containers.targets
+  relabel_rules = discovery.relabel.docker_logs.rules
+  forward_to = [loki.write.local_storage.receiver]
+}
+
+loki.write "local_storage" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
