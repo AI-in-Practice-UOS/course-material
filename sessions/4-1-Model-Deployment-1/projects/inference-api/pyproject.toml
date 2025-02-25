@@ -6,7 +6,9 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.115.8",
     "prometheus-fastapi-instrumentator>=7.0.2",
-    "tensorflow>=2.18.0",
+    "tensorflow>=2.18.0 ; sys_platform == 'linux'",
+    "tensorflow>=2.18.0 ; sys_platform == 'darwin'",
+    "tensorflow-cpu>=2.18.0 ; sys_platform == 'win32'",
     "tf-keras>=2.18.0",
     "transformers>=4.49.0",
 ]
