@@ -3,7 +3,7 @@ name = "course-material"
 version = "0.1.0"
 description = "The course material for the AI in Practice course at University Osnabrueck"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
@@ -17,6 +17,5 @@ members = [
     "sessions/3-2-Experiment-Execution/sample-project-final",
     "sessions/1-3-Developer-Tools/number_guesser",
     "sessions/1-3-Developer-Tools/number_guesser_enhanced",
-    "sessions/4-1-Model-Deployment-1/projects/model-serialization",
     "sessions/4-1-Model-Deployment-1/projects/minimal-fastapi", 
 ]

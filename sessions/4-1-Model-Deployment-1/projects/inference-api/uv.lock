@@ -2,12 +2,14 @@ version = 1
 revision = 1
 requires-python = ">=3.11"
 resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform == 'win32'",
+    "python_full_version < '3.12' and sys_platform == 'win32'",
     "python_full_version >= '3.12' and sys_platform == 'linux'",
-    "python_full_version >= '3.12' and sys_platform == 'darwin'",
-    "python_full_version >= '3.12' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "python_full_version < '3.12' and sys_platform == 'linux'",
+    "python_full_version >= '3.12' and sys_platform == 'darwin'",
     "python_full_version < '3.12' and sys_platform == 'darwin'",
-    "python_full_version < '3.12' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version >= '3.12' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version < '3.12' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
 ]
 
 [[package]]
@@ -439,6 +441,8 @@ dependencies = [
     { name = "prometheus-fastapi-instrumentator" },
     { name = "tensorflow", marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
     { name = "tensorflow-cpu", marker = "sys_platform == 'win32'" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.31.0", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'win32'" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.37.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'darwin'" },
     { name = "tf-keras" },
     { name = "transformers" },
 ]
@@ -456,6 +460,8 @@ requires-dist = [
     { name = "tensorflow", marker = "sys_platform == 'darwin'", specifier = ">=2.18.0" },
     { name = "tensorflow", marker = "sys_platform == 'linux'", specifier = ">=2.18.0" },
     { name = "tensorflow-cpu", marker = "sys_platform == 'win32'", specifier = ">=2.18.0" },
+    { name = "tensorflow-io-gcs-filesystem", marker = "sys_platform == 'darwin'", specifier = ">=0.37.1" },
+    { name = "tensorflow-io-gcs-filesystem", marker = "sys_platform == 'win32'", specifier = "==0.31.0" },
     { name = "tf-keras", specifier = ">=2.18.0" },
     { name = "transformers", specifier = ">=4.49.0" },
 ]
@@ -1222,7 +1228,8 @@ dependencies = [
     { name = "setuptools" },
     { name = "six" },
     { name = "tensorboard" },
-    { name = "tensorflow-io-gcs-filesystem", marker = "python_full_version < '3.12'" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.31.0", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and sys_platform == 'linux') or (python_full_version < '3.12' and sys_platform == 'win32')" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.37.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12' and sys_platform != 'linux' and sys_platform != 'win32'" },
     { name = "termcolor" },
     { name = "typing-extensions" },
     { name = "wrapt" },
@@ -1243,29 +1250,29 @@ name = "tensorflow-cpu"
 version = "2.18.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "absl-py", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "astunparse", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "flatbuffers", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "gast", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "google-pasta", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "grpcio", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "h5py", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "keras", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "libclang", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "ml-dtypes", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "numpy", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "opt-einsum", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "packaging", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "protobuf", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "requests", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "setuptools", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "six", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "tensorboard", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
+    { name = "absl-py", marker = "sys_platform == 'win32'" },
+    { name = "astunparse", marker = "sys_platform == 'win32'" },
+    { name = "flatbuffers", marker = "sys_platform == 'win32'" },
+    { name = "gast", marker = "sys_platform == 'win32'" },
+    { name = "google-pasta", marker = "sys_platform == 'win32'" },
+    { name = "grpcio", marker = "sys_platform == 'win32'" },
+    { name = "h5py", marker = "sys_platform == 'win32'" },
+    { name = "keras", marker = "sys_platform == 'win32'" },
+    { name = "libclang", marker = "sys_platform == 'win32'" },
+    { name = "ml-dtypes", marker = "sys_platform == 'win32'" },
+    { name = "numpy", marker = "sys_platform == 'win32'" },
+    { name = "opt-einsum", marker = "sys_platform == 'win32'" },
+    { name = "packaging", marker = "sys_platform == 'win32'" },
+    { name = "protobuf", marker = "sys_platform == 'win32'" },
+    { name = "requests", marker = "sys_platform == 'win32'" },
+    { name = "setuptools", marker = "sys_platform == 'win32'" },
+    { name = "six", marker = "sys_platform == 'win32'" },
+    { name = "tensorboard", marker = "sys_platform == 'win32'" },
     { name = "tensorflow-intel", marker = "sys_platform == 'win32'" },
-    { name = "tensorflow-io-gcs-filesystem", marker = "python_full_version < '3.12' and sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "termcolor", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "typing-extensions", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "wrapt", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12' and sys_platform == 'win32'" },
+    { name = "termcolor", marker = "sys_platform == 'win32'" },
+    { name = "typing-extensions", marker = "sys_platform == 'win32'" },
+    { name = "wrapt", marker = "sys_platform == 'win32'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ac/19/c254bb3df8f1325cc7c7ad7db2ec7cf704a04e7a682b6352a6129fbefbc4/tensorflow_cpu-2.18.0-cp311-cp311-win_amd64.whl", hash = "sha256:c61ef38e24686cd460e31f988ea36f73092ccc628193df95116d6c5f690393f9", size = 7570 },
@@ -1277,28 +1284,28 @@ name = "tensorflow-intel"
 version = "2.18.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "absl-py", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "astunparse", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "flatbuffers", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "gast", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "google-pasta", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "grpcio", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "h5py", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "keras", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "libclang", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "ml-dtypes", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "numpy", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "opt-einsum", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "packaging", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "protobuf", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "requests", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "setuptools", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "six", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "tensorboard", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "tensorflow-io-gcs-filesystem", marker = "python_full_version < '3.12' and sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "termcolor", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "typing-extensions", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
-    { name = "wrapt", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
+    { name = "absl-py", marker = "sys_platform == 'win32'" },
+    { name = "astunparse", marker = "sys_platform == 'win32'" },
+    { name = "flatbuffers", marker = "sys_platform == 'win32'" },
+    { name = "gast", marker = "sys_platform == 'win32'" },
+    { name = "google-pasta", marker = "sys_platform == 'win32'" },
+    { name = "grpcio", marker = "sys_platform == 'win32'" },
+    { name = "h5py", marker = "sys_platform == 'win32'" },
+    { name = "keras", marker = "sys_platform == 'win32'" },
+    { name = "libclang", marker = "sys_platform == 'win32'" },
+    { name = "ml-dtypes", marker = "sys_platform == 'win32'" },
+    { name = "numpy", marker = "sys_platform == 'win32'" },
+    { name = "opt-einsum", marker = "sys_platform == 'win32'" },
+    { name = "packaging", marker = "sys_platform == 'win32'" },
+    { name = "protobuf", marker = "sys_platform == 'win32'" },
+    { name = "requests", marker = "sys_platform == 'win32'" },
+    { name = "setuptools", marker = "sys_platform == 'win32'" },
+    { name = "six", marker = "sys_platform == 'win32'" },
+    { name = "tensorboard", marker = "sys_platform == 'win32'" },
+    { name = "tensorflow-io-gcs-filesystem", version = "0.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12' and sys_platform == 'win32'" },
+    { name = "termcolor", marker = "sys_platform == 'win32'" },
+    { name = "typing-extensions", marker = "sys_platform == 'win32'" },
+    { name = "wrapt", marker = "sys_platform == 'win32'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/ad/fa6c508a15ff79cb5409294c293388e0999b7d480f84b65e4287277434fe/tensorflow_intel-2.18.0-cp311-cp311-win_amd64.whl", hash = "sha256:af380d326e146f2d184a940ccf8350e9b6dc06a0530bfaa3a557b73819c4017b", size = 390215589 },
@@ -1307,17 +1314,33 @@ wheels = [
 
 [[package]]
 name = "tensorflow-io-gcs-filesystem"
+version = "0.31.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform == 'win32'",
+    "python_full_version < '3.12' and sys_platform == 'win32'",
+    "python_full_version < '3.12' and sys_platform == 'linux'",
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e7/c4/0d44ef93add3432ce43f37fe0c205cc7b6fd685fca80054fb4a646a9dbe3/tensorflow_io_gcs_filesystem-0.31.0-cp311-cp311-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:e417faf8755aafe52d8f8c6b5ae5bae6e4fae8326ee3acd5e9181b83bbfbae87", size = 2381673 },
+    { url = "https://files.pythonhosted.org/packages/a8/2b/3064195efa016fff942009fe965ecbbbbd7d70bf34ee22d4ff31a0f3443a/tensorflow_io_gcs_filesystem-0.31.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:37c40e3c4ee1f8dda3b545deea6b8839192c82037d8021db9f589908034ad975", size = 2572150 },
+    { url = "https://files.pythonhosted.org/packages/ac/4e/9566a313927be582ca99455a9523a097c7888fc819695bdc08415432b202/tensorflow_io_gcs_filesystem-0.31.0-cp311-cp311-win_amd64.whl", hash = "sha256:4bb37d23f21c434687b11059cb7ffd094d52a7813368915ba1b7057e3c16e414", size = 1486315 },
+]
+
+[[package]]
+name = "tensorflow-io-gcs-filesystem"
 version = "0.37.1"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform == 'darwin'",
+    "python_full_version < '3.12' and sys_platform == 'darwin'",
+    "python_full_version < '3.12' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/40/9b/b2fb82d0da673b17a334f785fc19c23483165019ddc33b275ef25ca31173/tensorflow_io_gcs_filesystem-0.37.1-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:32c50ab4e29a23c1f91cd0f9ab8c381a0ab10f45ef5c5252e94965916041737c", size = 2470224 },
     { url = "https://files.pythonhosted.org/packages/5b/cc/16634e76f3647fbec18187258da3ba11184a6232dcf9073dc44579076d36/tensorflow_io_gcs_filesystem-0.37.1-cp311-cp311-macosx_12_0_arm64.whl", hash = "sha256:b02f9c5f94fd62773954a04f69b68c4d576d076fd0db4ca25d5479f0fbfcdbad", size = 3479613 },
-    { url = "https://files.pythonhosted.org/packages/de/bf/ba597d3884c77d05a78050f3c178933d69e3f80200a261df6eaa920656cd/tensorflow_io_gcs_filesystem-0.37.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6e1f2796b57e799a8ca1b75bf47c2aaa437c968408cc1a402a9862929e104cda", size = 4842079 },
-    { url = "https://files.pythonhosted.org/packages/66/7f/e36ae148c2f03d61ca1bff24bc13a0fef6d6825c966abef73fc6f880a23b/tensorflow_io_gcs_filesystem-0.37.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ee7c8ee5fe2fd8cb6392669ef16e71841133041fee8a330eff519ad9b36e4556", size = 5085736 },
     { url = "https://files.pythonhosted.org/packages/70/83/4422804257fe2942ae0af4ea5bcc9df59cb6cb1bd092202ef240751d16aa/tensorflow_io_gcs_filesystem-0.37.1-cp312-cp312-macosx_10_14_x86_64.whl", hash = "sha256:ffebb6666a7bfc28005f4fbbb111a455b5e7d6cd3b12752b7050863ecb27d5cc", size = 2470224 },
     { url = "https://files.pythonhosted.org/packages/43/9b/be27588352d7bd971696874db92d370f578715c17c0ccb27e4b13e16751e/tensorflow_io_gcs_filesystem-0.37.1-cp312-cp312-macosx_12_0_arm64.whl", hash = "sha256:fe8dcc6d222258a080ac3dfcaaaa347325ce36a7a046277f6b3e19abc1efb3c5", size = 3479614 },
-    { url = "https://files.pythonhosted.org/packages/d3/46/962f47af08bd39fc9feb280d3192825431a91a078c856d17a78ae4884eb1/tensorflow_io_gcs_filesystem-0.37.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fbb33f1745f218464a59cecd9a18e32ca927b0f4d77abd8f8671b645cc1a182f", size = 4842077 },
-    { url = "https://files.pythonhosted.org/packages/f0/9b/790d290c232bce9b691391cf16e95a96e469669c56abfb1d9d0f35fa437c/tensorflow_io_gcs_filesystem-0.37.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:286389a203a5aee1a4fa2e53718c661091aa5fea797ff4fa6715ab8436b02e6c", size = 5085733 },
 ]
 
 [[package]]
