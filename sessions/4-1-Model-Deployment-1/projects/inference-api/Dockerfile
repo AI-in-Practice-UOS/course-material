@@ -1,4 +1,4 @@
-# https://docs.astral.sh/uv/guides/integration/fastapi
+# adapted from https://docs.astral.sh/uv/guides/integration/fastapi
 
 # Define base image.
 FROM python:3.11-slim
@@ -6,12 +6,17 @@ FROM python:3.11-slim
 # Install uv.
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Copy the application into the container.
-COPY . /app
+# Set working dir.
+WORKDIR /app
+
+# Copy uv dependencies.
+COPY pyproject.toml uv.lock ./
 
 # Install the application dependencies.
-WORKDIR /app
 RUN uv sync --frozen --no-cache
+
+# Copy the application into the container.
+COPY . .
 
 # Indicate the port for correct usage.
 EXPOSE 80
