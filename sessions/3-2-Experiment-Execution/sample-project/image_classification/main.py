@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def train():
     logging.basicConfig(level="INFO")
-    device = "cuda"
+    device = "cpu"
     logger.info("Loading Data...")
     train_dataset = datasets.FashionMNIST(
         "data",
