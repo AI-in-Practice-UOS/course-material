@@ -1,7 +1,7 @@
 
 prometheus.scrape "local_metrics" {
   targets = [
-    { "__address__" = "inference-api:80" },
+    { "__address__" = "inf-api:80" },
   ]
   scrape_interval = "15s"
   forward_to = [prometheus.remote_write.local_storage.receiver]

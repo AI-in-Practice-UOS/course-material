@@ -2,7 +2,7 @@ services:
 
   inference-api:
     image: "inference-api"
-    container_name: inference-api
+    container_name: inf-api
     restart: no
     ports:
       - "8000:80"
