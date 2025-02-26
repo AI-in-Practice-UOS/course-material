@@ -1,0 +1,20 @@
+[project]
+name = "image-classification-final"
+version = "0.1.0"
+description = "Experiment with neural network based image classifiers."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mlflow>=2.20.2",
+    "numpy>=2.2.3",
+    "pyyaml>=6.0.2",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]
+
+[project.scripts]
+train = "image_classification_final.main:train"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

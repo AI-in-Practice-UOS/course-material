@@ -1,0 +1,4 @@
+epochs: 30
+model_channel_factor: 2
+optimizer_weight_decay: 0.0001
+optimizer_learning_rate: 0.01
