@@ -1,0 +1,36 @@
+openapi: "3.0.2"
+info:
+  title: "Library API"
+  description: "Manage books"
+  version: "1.0"
+paths:
+  /books/{book_id}:
+    get:
+      summary: "Retrieve a book"
+      description: "Fetch book details by ID."
+      parameters:
+        - name: "book_id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        "200":
+          description: "Book retrieved successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+components:
+  schemas:
+    Book:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+          description: "Book title"
+          example: "1984"
+        year:
+          type: "integer"
+          description: "Publication year"
+          example: 1949

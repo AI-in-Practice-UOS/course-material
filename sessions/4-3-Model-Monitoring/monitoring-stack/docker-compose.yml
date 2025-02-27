@@ -1,0 +1,54 @@
+services:
+
+  inference-api:
+    image: "inference-api"
+    container_name: inf-api
+    restart: no
+    ports:
+      - "8000:80"
+
+  grafana:
+    image: "grafana/grafana:11.5.1"
+    container_name: grafana
+    restart: no
+    environment:
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Editor"
+      GF_PATHS_PROVISIONING: "/etc/grafana/provisioning"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./grafana/provisioning:/etc/grafana/provisioning:ro"
+      - "grafana_data:/var/lib/grafana"
+
+  alloy:
+    image: "grafana/alloy:v1.6.1"
+    container_name: alloy
+    restart: no
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./alloy/config.alloy:/etc/alloy/config.alloy:ro"
+
+  prometheus:
+    image: "prom/prometheus:v3.1.0"
+    container_name: prometheus
+    restart: no
+    command:
+      - "--web.enable-remote-write-receiver"
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    volumes:
+      - "metrics_data:/prometheus"
+
+  loki:
+    image: "grafana/loki:3.4.2"
+    container_name: loki
+    restart: no
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - "log_data:/loki"
+
+volumes:
+  grafana_data:
+  metrics_data:
+  log_data:
